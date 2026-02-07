@@ -32,5 +32,8 @@ export default () => {
         projectId: "452a3346-38ab-4afd-9cbb-8b103fab5374",
       },
     },
+    plugins: [
+      "expo-video"
+    ]
   };
 };
