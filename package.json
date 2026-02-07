@@ -19,6 +19,7 @@
     "@react-spring/native": "^10.0.3",
     "@rive-app/react-native": "^0.2.1",
     "@shopify/react-native-skia": "^2.4.18",
+    "babel-preset-expo": "~54.0.10",
     "expo": "~54.0.31",
     "expo-blur": "~15.0.8",
     "expo-dev-client": "~6.0.20",

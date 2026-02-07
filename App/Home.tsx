@@ -8,6 +8,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'H
 
 const animations = [
   { name: 'Example1', title: 'Example 1' },
+  { name: 'SwipeCards', title: 'Swipe Cards' },
 ];
 
 const Home = () => {
