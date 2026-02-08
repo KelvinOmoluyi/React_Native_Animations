@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const StackNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={Home} options={{ title: 'Animations' }} />
       <Stack.Screen name="Example1" component={Example1} />
       <Stack.Screen name="SwipeCards" component={SwipeCards} />
