@@ -4,9 +4,9 @@ import { Animated } from 'react-native'
 
 // Animated.Value
 // Animated.createAnimatedComponent
-// Animated.timing
-// Animated.spring
-// Animated.decay
+// Animated.timing  // smooth animation
+// Animated.spring  // bouncy animation
+// Animated.decay   // 
 // Animated.parallel
 // Animated.sequence
 // Animated.stagger
@@ -16,16 +16,19 @@ import { Animated } from 'react-native'
 
 const Example1 = () => {
   const ballAnimated = new Animated.Value(0);
-  const postition  = new Animated.ValueXY({x: 0, y: 0});
+  const postition  = new Animated.ValueXY({x: 130, y: 0});
 
   Animated.spring(postition, {
-    toValue: {x: 100, y: 500},
+    toValue: {x: 130, y: 300},
+    mass: 50,
+    stiffness: 80,
+    damping: 10,
     useNativeDriver: true,
   }).start();
 
   return (
     <View style={{flex: 1}}>
-      <Animated.View style={postition.getLayout()}>
+      <Animated.View style={postition.getTranslateTransform()}>
         <View style={styles.ball} />
       </Animated.View>
     </View>
