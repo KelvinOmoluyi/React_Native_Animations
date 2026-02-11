@@ -72,9 +72,9 @@ const GlassComp = ({
             }
         ]}>
             <BlurView 
-                experimentalBlurMethod="dimezisBlurView" 
-                intensity={intensity} 
-                style={styles.blurView} 
+              experimentalBlurMethod="dimezisBlurView" 
+              intensity={intensity} 
+              style={styles.blurView} 
             />
         </View>
 
@@ -82,19 +82,19 @@ const GlassComp = ({
         <View style={[
             styles.innerContentContainer,
             {
-                top: borderWidth,
-                left: borderWidth,
-                right: borderWidth,
-                bottom: borderWidth,
-                borderRadius: borderRadius - (borderWidth / 2),
-                width: width ? (typeof width === 'number' ? width - (borderWidth * 2) : undefined) : undefined,
-                height: height ? (typeof height === 'number' ? height - (borderWidth * 2) : undefined) : undefined,
-                justifyContent, 
-                alignItems, 
-                flexDirection, 
-                padding, 
-                rowGap, 
-                columnGap 
+              top: borderWidth,
+              left: borderWidth,
+              right: borderWidth,
+              bottom: borderWidth,
+              borderRadius: borderRadius - (borderWidth / 2),
+              width: width ? (typeof width === 'number' ? width - (borderWidth * 2) : undefined) : undefined,
+              height: height ? (typeof height === 'number' ? height - (borderWidth * 2) : undefined) : undefined,
+              justifyContent, 
+              alignItems, 
+              flexDirection, 
+              padding, 
+              rowGap, 
+              columnGap 
             }
         ]}>
              {children}

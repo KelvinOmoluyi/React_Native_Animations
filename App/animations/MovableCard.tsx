@@ -2,6 +2,7 @@ import { Image, ImageBackground, PanResponder, StatusBar, StyleSheet, Text, View
 import React from 'react'
 import { Images } from '@/const/images'
 import GlassComp from '../../components/GlassComp'
+// @ts-ignore
 import { FontAwesome } from '@expo/vector-icons'
 import { useRef } from 'react'
 import { Animated } from 'react-native'
