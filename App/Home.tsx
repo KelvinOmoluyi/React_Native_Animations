@@ -10,6 +10,9 @@ const animations = [
   { name: 'Example1', title: 'Example 1' },
   { name: 'SwipeCards', title: 'Swipe Cards' },
   { name: 'MovableCard', title: 'Movable Card' },
+  { name: 'WeatherForecastCard', title: 'Weather Forecast Card' },
+  { name: 'GlassyBottomSheet', title: 'Glassy Bottom Sheet' },
+  { name: 'MotivationCard', title: 'Motivation Card' },
 ];
 
 const Home = () => {
@@ -39,6 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#fff',
+    paddingTop: 50
   },
   header: {
     fontSize: 24,
