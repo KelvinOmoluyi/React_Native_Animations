@@ -13,6 +13,8 @@ const animations = [
   { name: 'WeatherForecastCard', title: 'Weather Forecast Card' },
   { name: 'GlassyBottomSheet', title: 'Glassy Bottom Sheet' },
   { name: 'MotivationCard', title: 'Motivation Card' },
+  { name: 'GameLoader', title: 'Game Loader' },
+  { name: 'CircularControl', title: 'Circular Control' },
 ];
 
 const Home = () => {

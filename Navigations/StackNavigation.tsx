@@ -7,6 +7,8 @@ import MovableCard from '../App/animations/MovableCard';
 import WeatherForecastCard from '@/App/animations/WeatherForecastCard';
 import GlassyBottomSheet from '@/App/animations/GlassyBottomSheet';
 import MotivationCard from '@/App/animations/MotivationCard';
+import GameLoader from '@/App/animations/GameLoader';
+import CircularControl from '@/App/animations/CircularControl';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -16,6 +18,8 @@ export type RootStackParamList = {
   WeatherForecastCard: undefined;
   GlassyBottomSheet: undefined;
   MotivationCard: undefined;
+  GameLoader: undefined;
+  CircularControl: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -30,6 +34,8 @@ const StackNavigation = () => {
       <Stack.Screen name="WeatherForecastCard" component={WeatherForecastCard} />
       <Stack.Screen name="GlassyBottomSheet" component={GlassyBottomSheet} />
       <Stack.Screen name="MotivationCard" component={MotivationCard} />
+      <Stack.Screen name="GameLoader" component={GameLoader} />
+      <Stack.Screen name="CircularControl" component={CircularControl} />
     </Stack.Navigator>
   );
 };
