@@ -9,6 +9,7 @@ import stormy from '@/assets/images/stormy.png';
 import sun from '@/assets/images/sun.png';
 import neonBackground from '@/assets/images/neon-background.png'
 import bubbleBackground from '@/assets/images/bubble-background.jpg'
+import desertBackground from '@/assets/images/desert-background.jpg'
 
 export const Images = {
     LeafBackground1,
@@ -21,5 +22,6 @@ export const Images = {
     stormy,
     sun,
     neonBackground,
-    bubbleBackground
+    bubbleBackground,
+    desertBackground
 }
