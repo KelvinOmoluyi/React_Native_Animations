@@ -5,22 +5,22 @@ import GlassComp from '@/components/GlassComp'
 
 const MotivationCard = () => {
   return (
-        <>
-          <StatusBar barStyle={"light-content"} />
-          <ImageBackground 
-            source={Images.bubbleBackground} 
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
-          >
-            <GlassComp
-            style={styles.cardContainer}
-            intensity={20}
-            borderWidth={1}
-            gradientColors={['#dadadaff', '#dadadaff']}
-          >
-              <View></View>
-          </GlassComp>
-          </ImageBackground>
-        </>
+    <>
+      <StatusBar barStyle={"light-content"} />
+      <ImageBackground 
+        source={Images.bubbleBackground} 
+        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+      >
+        <GlassComp
+          style={styles.cardContainer}
+          intensity={20}
+          borderWidth={1}
+          gradientColors={['#dadadaff', '#dadadaff']}
+        >
+          <View></View>
+        </GlassComp>
+      </ImageBackground>
+    </>
   )
 }
 
