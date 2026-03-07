@@ -9,6 +9,7 @@ import GlassyBottomSheet from '@/App/animations/GlassyBottomSheet';
 import MotivationCard from '@/App/animations/MotivationCard';
 import GameLoader from '@/App/animations/GameLoader';
 import CircularControl from '@/App/animations/CircularControl';
+import StackableCards from '@/App/animations/StackableCards';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -20,6 +21,7 @@ export type RootStackParamList = {
   MotivationCard: undefined;
   GameLoader: undefined;
   CircularControl: undefined;
+  StackableCards: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -36,6 +38,7 @@ const StackNavigation = () => {
       <Stack.Screen name="MotivationCard" component={MotivationCard} />
       <Stack.Screen name="GameLoader" component={GameLoader} />
       <Stack.Screen name="CircularControl" component={CircularControl} />
+      <Stack.Screen name="StackableCards" component={StackableCards} />
     </Stack.Navigator>
   );
 };

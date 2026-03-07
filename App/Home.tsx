@@ -15,6 +15,7 @@ const animations = [
   { name: 'MotivationCard', title: 'Motivation Card' },
   { name: 'GameLoader', title: 'Game Loader' },
   { name: 'CircularControl', title: 'Circular Control' },
+  { name: 'StackableCards', title: 'Stackable Cards' },
 ];
 
 const Home = () => {

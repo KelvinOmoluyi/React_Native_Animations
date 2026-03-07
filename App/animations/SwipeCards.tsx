@@ -29,12 +29,33 @@ const renderItem = ({item}: {item: Card}) => {
   )
 }
 
+const renderNoMoreCards = () => {
+  return (
+    <View style={styles.card}>
+      <View style={{width: IMAGE_WIDTH, height: IMAGE_HEIGHT, backgroundColor: '#d1f1ffff'}}>
+
+      </View>
+      <View style={{padding: 10}}>
+        <Text style={{fontSize: 24, fontWeight: 'bold'}}>All done</Text>
+        <Text style={{fontSize: 20, fontWeight: 'normal'}}>You've seen all the cards!</Text>
+      </View>
+
+      <View style={{alignItems: "center", paddingHorizontal: 10}}>
+          <Pressable style={{width: "100%", height: 40, backgroundColor: '#03a9f4', alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={{color: 'white'}}>Get more...</Text>
+        </Pressable>
+      </View>
+    </View>
+  )
+}
+
 const SwipeCards = () => {
   return (
     <View style={{flex: 1}}>
       <Deck
         data={SWIPE_CARDS_DATA}
         renderCard={(item) => renderItem({item})}
+        renderNoMoreCards={renderNoMoreCards}
         onSwipeLeft={() => {}}
         onSwipeRight={() => {}}
       />
@@ -54,5 +75,5 @@ const styles = StyleSheet.create({
         borderBottomWidth: 4,
         borderColor: '#666666ff',
         borderRadius: BORDER_RADIUS,
-    }
+    },
 })

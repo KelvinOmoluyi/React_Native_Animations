@@ -5,6 +5,7 @@ import { Card } from '../../types'
 type Props = {
     data: Card[];
     renderCard: (item: Card) => React.ReactNode;
+    renderNoMoreCards: () => React.ReactNode;
     onSwipeRight: (item: Card) => void;
     onSwipeLeft: (item: Card) => void;
 }
@@ -13,14 +14,14 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 250; // duration of the swipe animation
 
-const Deck = ({data, renderCard, onSwipeRight, onSwipeLeft}: Props) => {
+const Deck = ({data, renderCard, renderNoMoreCards, onSwipeRight, onSwipeLeft}: Props) => {
   const position = useRef(new Animated.ValueXY()).current;
   const [index, setIndex] = useState(0);
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true, // at the start of the event - called anytime they press on the screen
     onPanResponderMove: (e, gestureState) => { // when the event is going on
-      position.setValue({x: gestureState.dx, y: gestureState.dy})
+      position.setValue({x: gestureState.dx, y: 0})
     },
     onPanResponderRelease(e, gestureState) {
       if (gestureState.dx > SWIPE_THRESHOLD) {
@@ -63,21 +64,35 @@ const Deck = ({data, renderCard, onSwipeRight, onSwipeLeft}: Props) => {
   const onSwipeComplete = (direction: 'right' | 'left') => {
     const item = data[index];
     direction === 'right' ? onSwipeRight(item) : onSwipeLeft(item);
-    setIndex(index + 1);
+    setIndex(prev => prev + 1);         // advance index first
+    position.setValue({ x: 0, y: 0 }); // reset position after — prevents the swiped card
+                                        // from snapping back to (0,0) while still rendered at old index
   }
 
   const renderCards = () => {
-    return data.map((item, index) => {
-      if (index === 0) {
+    if (index >= data.length) {
+      return renderNoMoreCards();
+    }
+
+    return data.map((item, i) => {
+      if (i < index) { // if the index of the card is less than the current index, then it is already swiped
+        return null;
+      }
+
+      if (i === index) { // if the index of the card is equal to the current index, then it is the top card
         return (
-          <Animated.View key={item.id} style={getCardStyle()} {...panResponder.panHandlers}>
+          <Animated.View key={item.id} style={[styles.cardStyle, getCardStyle()]} {...panResponder.panHandlers}>
             {renderCard(item)}
           </Animated.View>
         )
       }
 
-      return renderCard(item)
-    })
+      return (
+        <Animated.View key={item.id} style={[styles.cardStyle]}>
+          {renderCard(item)}
+        </Animated.View>
+      )
+    }).reverse()
   }
 
   return (
@@ -94,4 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  cardStyle: {
+    position: "absolute"
+  }
 })
