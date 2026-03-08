@@ -1,4 +1,4 @@
-import { Card } from "../types";
+import { Card, TouristCardType } from "../types";
 
 export const SWIPE_CARDS_DATA: Card[] = [
   {
@@ -42,3 +42,35 @@ export const SWIPE_CARDS_DATA: Card[] = [
     uri: 'https://images.unsplash.com/photo-1557672172-298e090bd0f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
   },
 ];
+
+export const TOURIST_CARDS_DATA: TouristCardType[] = [
+  {
+    id: 1,
+    text: 'SINDALA ISLAND',
+    uri: require('../assets/images/touristCard/nature-image1.png'),
+  },
+  {
+    id: 2,
+    text: 'MARGINAL Park',
+    uri: require('../assets/images/touristCard/nature-image2.png'),
+  },
+  {
+    id: 3,
+    text: 'SAHARA DESERT',
+    uri: require('../assets/images/touristCard/nature-image3.png'),
+  },
+  {
+    id: 4,
+    text: 'TROJENA MOUNTAIN',
+    uri: require('../assets/images/touristCard/nature-image4.png'),
+  },
+];
+
+export const TOURIST_CARDS_BG_COLORS = [
+  'hsla(192, 100%, 40%, 1.00)',
+  'hsla(145, 97%, 30%, 1.00)',
+  'hsla(44, 99%, 30%, 1.00)',
+  '#cececeff',
+];
+
+

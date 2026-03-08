@@ -10,6 +10,7 @@ import MotivationCard from '@/App/animations/MotivationCard';
 import GameLoader from '@/App/animations/GameLoader';
 import CircularControl from '@/App/animations/CircularControl';
 import StackableCards from '@/App/animations/StackableCards';
+import TouristCard from '@/App/animations/TouristCard';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -22,6 +23,7 @@ export type RootStackParamList = {
   GameLoader: undefined;
   CircularControl: undefined;
   StackableCards: undefined;
+  TouristCard: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -39,6 +41,7 @@ const StackNavigation = () => {
       <Stack.Screen name="GameLoader" component={GameLoader} />
       <Stack.Screen name="CircularControl" component={CircularControl} />
       <Stack.Screen name="StackableCards" component={StackableCards} />
+      <Stack.Screen name="TouristCard" component={TouristCard} />
     </Stack.Navigator>
   );
 };
