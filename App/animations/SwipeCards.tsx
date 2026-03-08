@@ -51,14 +51,16 @@ const renderNoMoreCards = () => {
 
 const SwipeCards = () => {
   return (
-    <View style={{flex: 1}}>
-      <Deck
-        data={SWIPE_CARDS_DATA}
-        renderCard={(item) => renderItem({item})}
-        renderNoMoreCards={renderNoMoreCards}
-        onSwipeLeft={() => {}}
-        onSwipeRight={() => {}}
-      />
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{width: CARD_WIDTH, height: CARD_HEIGHT}}>
+        <Deck
+          data={SWIPE_CARDS_DATA}
+          renderCard={(item) => renderItem({item})}
+          renderNoMoreCards={renderNoMoreCards}
+          onSwipeLeft={() => {}}
+          onSwipeRight={() => {}}
+        />
+      </View>
     </View>
   )
 }
