@@ -1,4 +1,5 @@
 import { Card, TouristCardType } from "../types";
+import { MaterialIcons, Entypo, MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 
 export const SWIPE_CARDS_DATA: Card[] = [
   {
@@ -15,6 +16,7 @@ export const SWIPE_CARDS_DATA: Card[] = [
     id: 3,
     text: 'Card #3',
     uri: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+
   },
   {
     id: 4,
@@ -48,21 +50,25 @@ export const TOURIST_CARDS_DATA: TouristCardType[] = [
     id: 1,
     text: 'SINDALA ISLAND',
     uri: require('../assets/images/touristCard/nature-image1.png'),
+    linkColor: '#00ccffff',
   },
   {
     id: 2,
     text: 'MARGINAL Park',
     uri: require('../assets/images/touristCard/nature-image2.png'),
+    linkColor: '#00ff00',
   },
   {
     id: 3,
     text: 'SAHARA DESERT',
     uri: require('../assets/images/touristCard/nature-image3.png'),
+    linkColor: '#ffbb00ff',
   },
   {
     id: 4,
     text: 'TROJENA MOUNTAIN',
     uri: require('../assets/images/touristCard/nature-image4.png'),
+    linkColor: '#ffffffff',
   },
 ];
 
@@ -72,5 +78,7 @@ export const TOURIST_CARDS_BG_COLORS = [
   'hsla(44, 99%, 30%, 1.00)',
   '#cececeff',
 ];
+
+
 
 

@@ -13,7 +13,7 @@ type Props = {
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SWIPE_THRESHOLD = 0.17 * SCREEN_HEIGHT;
-const SWIPE_OUT_DURATION = 150;
+const SWIPE_OUT_DURATION = 300;
 const MAX_VISIBLE_CARDS = 3;
 const CARD_OFFSET = 10; // vertical offset between stacked cards
 
@@ -41,16 +41,17 @@ const Stack = ({data, renderCard, renderNoMoreCards, onSwipeDown, onSwipeUp, set
 
 
   useEffect(() => {
-    setItemId(index);
-  }, [index, setItemId]);
+    setItemId(index % data.length);
+  }, [index, setItemId, data.length]);
 
   useEffect(() => {
     const anims = topAnimsRef.current;
-    const lastVisible = Math.min(index + MAX_VISIBLE_CARDS, data.length);
+    const lastVisible = index + MAX_VISIBLE_CARDS;
     const springs: Animated.CompositeAnimation[] = [];
     for (let i = index; i < lastVisible; i++) {
+      const animIndex = i % data.length;
       springs.push(
-        Animated.spring(anims[i], {
+        Animated.spring(anims[animIndex], {
           toValue: (i - index) * CARD_OFFSET,
           useNativeDriver: true,
           tension: 80,
@@ -58,7 +59,10 @@ const Stack = ({data, renderCard, renderNoMoreCards, onSwipeDown, onSwipeUp, set
         })
       );
     }
+
+    // Start all stacking animations in parallel to smoothly transition cards to their new positions
     if (springs.length > 0) Animated.parallel(springs).start();
+
   }, [index, data.length]);
 
   const panResponder = useRef(
@@ -95,7 +99,7 @@ const Stack = ({data, renderCard, renderNoMoreCards, onSwipeDown, onSwipeUp, set
       useNativeDriver: true,
     }).start(() => {
       const currentIndex = indexRef.current;
-      onSwipeDownRef.current(dataRef.current[currentIndex]);
+      onSwipeDownRef.current(dataRef.current[currentIndex % data.length]);
       
       // KEY: Swap the object reference. This ensures the NEXT card
       // rendered at this index uses a fresh 0 value, NOT the 
@@ -117,7 +121,7 @@ const Stack = ({data, renderCard, renderNoMoreCards, onSwipeDown, onSwipeUp, set
       useNativeDriver: true,
     }).start(() => {
       const currentIndex = indexRef.current;
-      onSwipeUpRef.current(dataRef.current[currentIndex]);
+      onSwipeUpRef.current(dataRef.current[currentIndex % data.length]);
       swipeYRef.current = new Animated.Value(0);
       setIndex(currentIndex + 1);
       isSwipingRef.current = false;
@@ -149,38 +153,37 @@ const Stack = ({data, renderCard, renderNoMoreCards, onSwipeDown, onSwipeUp, set
   };
 
   const renderCards = () => {
-    if (index >= data.length) return renderNoMoreCards();
-
-    const lastVisible = Math.min(index + MAX_VISIBLE_CARDS, data.length);
+    const lastVisible = index + MAX_VISIBLE_CARDS;
     const topAnims = topAnimsRef.current;
     const cards: React.ReactNode[] = [];
 
     for (let i = lastVisible - 1; i >= index; i--) {
-      const item = data[i];
+      const dataIndex = i % data.length;
+      const item = data[dataIndex];
       const isActive = i === index;
 
-      const rotateZ = topAnims[i].interpolate({
+      const rotateZ = topAnims[dataIndex].interpolate({
         inputRange: [0, CARD_OFFSET * MAX_VISIBLE_CARDS],
         outputRange: ['0deg', '15deg'],
       });
 
-      // "The more back, the higher it is". topAnims[i] is positive, so we negate it.
-      const stackY = topAnims[i].interpolate({
+      // "The more back, the higher it is". topAnims[dataIndex] is positive, so we negate it.
+      const stackY = topAnims[dataIndex].interpolate({
         inputRange: [0, 1],
         outputRange: [0, -2],
       });
 
-      const stackX = topAnims[i].interpolate({
+      const stackX = topAnims[dataIndex].interpolate({
         inputRange: [0, 1],
         outputRange: [0, -2],
       });
 
       cards.push(
         <Animated.View
-          key={item.id}
+          key={item.id + '-' + i} // Unique key including virtual index
           style={[
             styles.cardStyle,
-            { zIndex: data.length - i },
+            { zIndex: lastVisible - i },
             isActive
               ? getCardStyle(rotateZ, swipeYRef.current, swipeXRef.current, stackY, stackX)
               : { transform: [{ rotateZ }, { translateY: stackY }, { translateX: stackX }] },

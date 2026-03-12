@@ -40,7 +40,6 @@ const MovableCard = () => {
             gradientColors={['#898d99', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#898d99']}
           >
               <View style={styles.cardContent}>
-                {/* Content goes here */}
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',}}>
                   <GlassComp 
                     style={{height: 55, width: 55, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}

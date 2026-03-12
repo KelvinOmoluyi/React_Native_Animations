@@ -10,4 +10,5 @@ export type TouristCardType = {
     id: number;
     text: string;
     uri: ImageSourcePropType;
+    linkColor: string;
 }
