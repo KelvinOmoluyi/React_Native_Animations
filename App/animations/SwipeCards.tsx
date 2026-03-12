@@ -51,7 +51,7 @@ const renderNoMoreCards = () => {
 
 const SwipeCards = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#121212"}}>
       <View style={{width: CARD_WIDTH, height: CARD_HEIGHT}}>
         <Deck
           data={SWIPE_CARDS_DATA}

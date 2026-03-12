@@ -1,12 +1,20 @@
-import { Image, ImageBackground, PanResponder, StatusBar, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Image, ImageBackground, PanResponder, StatusBar, StyleSheet, Text, View, Animated } from 'react-native'
+import React, { useRef } from 'react'
 import { Images } from '@/const/images'
+import { COLORS, SPACING, BORDER_RADIUS, TYPOGRAPHY } from '@/const/theme'
 import GlassComp from '../../components/GlassComp'
 // @ts-ignore
 import { FontAwesome } from '@expo/vector-icons'
-import { useRef } from 'react'
-import { Animated } from 'react-native'
 
+/**
+ * MovableCard Component
+ * Demonstrates a glassmorphic card that can be dragged and snaps back to its origin.
+ * 
+ * Key Techniques:
+ * - React Native PanResponder for gesture handling.
+ * - Animated.ValueXY for tracking position.
+ * - Spring animations for "bouncy" snap-back effect.
+ */
 const MovableCard = () => {
   const position = useRef(new Animated.ValueXY()).current;
 
@@ -14,11 +22,11 @@ const MovableCard = () => {
     onStartShouldSetPanResponder: () => true,
     onMoveShouldSetPanResponder: () => true,
     onPanResponderMove: (evt, gestureState) => {
-      position.setValue({x: gestureState.dx, y: gestureState.dy})
+      position.setValue({ x: gestureState.dx, y: gestureState.dy })
     },
     onPanResponderRelease: () => {
       Animated.spring(position, {
-        toValue: {x: 0, y: 0},
+        toValue: { x: 0, y: 0 },
         mass: 1,
         stiffness: 100,
         damping: 10,
@@ -29,93 +37,69 @@ const MovableCard = () => {
 
   return (
     <>
-    <StatusBar barStyle={"light-content"} />
-      <ImageBackground 
-        source={Images.LeafBackground1} 
-        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+      <StatusBar barStyle={"light-content"} />
+      <ImageBackground
+        source={Images.LeafBackground1}
+        style={styles.background}
       >
         <Animated.View style={position.getTranslateTransform()} {...panResponder.panHandlers}>
           <GlassComp
             style={styles.cardContainer}
-            gradientColors={['#898d99', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#898d99']}
+            gradientColors={COLORS.darkGlass}
           >
-              <View style={styles.cardContent}>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',}}>
-                  <GlassComp 
-                    style={{height: 55, width: 55, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}
-                    borderWidth={1}
-                    intensity={25}
-                    gradientColors={['#898d99', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#898d99']}
-                  >
-                    <Image
-                      source={Images.googleLogo}
-                      style={{height: 30, width: 30, borderRadius: 15}}
-                      height={30}
-                      width={30}
-                    />
-                  </GlassComp>
+            <View style={styles.cardContent}>
+              {/* Header: Company Logo & Saved Status */}
+              <View style={styles.header}>
+                <GlassComp
+                  style={styles.logoContainer}
+                  borderWidth={1}
+                  intensity={25}
+                  gradientColors={COLORS.darkGlass}
+                >
+                  <Image
+                    source={Images.googleLogo}
+                    style={styles.logo}
+                    resizeMode="contain"
+                  />
+                </GlassComp>
 
-                  <GlassComp 
-                  style={styles.savedButton}
-                    borderWidth={0.5}
-                    intensity={25}
-                    gradientColors={['#898d99', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#898d99']}
-                  >
-                    <Text style={{color: "white", fontSize: 16, fontWeight: "600"}}>Saved</Text>
-                    <FontAwesome name="bookmark" size={24} color="white" />
-                  </GlassComp>
+                <ActionButton label="Saved" icon="bookmark" />
+              </View>
+
+              {/* Body: Job Details */}
+              <View style={styles.body}>
+                <View style={styles.row}>
+                  <Text style={styles.companyName}>Google </Text>
+                  <Text style={styles.postDate}>20 Days</Text>
                 </View>
 
-                <View style={{marginTop: 30}}>
-                  <View style={{flexDirection: "row", justifyContent: "flex-start", alignItems: "center"}}>
-                    <Text style={{color: "white", fontSize: 24, fontWeight: "600", margin: 0, padding: 0}}>Google {" "}</Text>
-                    <Text style={{color: "#b6b6b6ff", fontSize: 18, fontWeight: "600", margin: 0, padding: 0}}>20 Days</Text>
-                  </View>
-
-                  <View style={{flexDirection: "row", justifyContent: "flex-start", alignItems: "center", marginTop: 12}}>
-                    <Text style={{color: "white", fontSize: 40, fontWeight: "500", lineHeight: 40, margin: 0, padding: 0}}>Mobile Developer</Text>
-                  </View>
-
-                  <View style={{flexDirection: "row", justifyContent: "flex-start", alignItems: "center", marginTop: 12, columnGap: 8}}>
-                    <GlassComp 
-                    style={styles.savedButton}
-                      borderWidth={0.5}
-                      intensity={25}
-                      gradientColors={['#898d99', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#898d99']}
-                    >
-                      <Text style={{color: "white", fontSize: 16, fontWeight: "600"}}>Full-Time</Text>
-                    </GlassComp>
-                    <GlassComp 
-                    style={{...styles.savedButton, width: 130}}
-                      borderWidth={0.5}
-                      intensity={25}
-                      gradientColors={['#898d99', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#898d99']}
-                    >
-                      <Text style={{color: "white", fontSize: 16, fontWeight: "600"}}>Flexible Schedule</Text>
-                    </GlassComp>
-                  </View>
+                <View style={styles.titleRow}>
+                  <Text style={TYPOGRAPHY.h1}>Mobile Developer</Text>
                 </View>
 
-                <View style={styles.bottomContent}>
-                  <View style={{width: "100%", flexDirection: "row", justifyContent: "space-between", alignItems: "center", columnGap: 8}}>
-                    <View>
-                      <Text style={{color: "white", fontSize: 20, fontWeight: "400"}}>$150 - $220K</Text>
-                      <Text style={{color: "#b6b6b6ff", fontSize: 16, fontWeight: "400", marginTop: 5}}>Mountain, View, CA</Text>
-                    </View>
-
-                    <View>
-                      <GlassComp 
-                        style={{...styles.savedButton, width: 110, height: 45}}
-                          borderWidth={0.5}
-                          intensity={10}
-                          gradientColors={['#898d99', '#43423d', '#43423d', '#43423d', '#43423d', '#43423d', '#898d99']}
-                        >
-                          <Text style={{color: "white", fontSize: 16, fontWeight: "600"}}>Apply Now</Text>
-                        </GlassComp>
-                      </View>
-                    </View>   
+                <View style={[styles.row, { marginTop: SPACING.sm, columnGap: SPACING.sm }]}>
+                  <Badge label="Full-Time" />
+                  <Badge label="Flexible Schedule" />
                 </View>
               </View>
+
+              {/* Footer: Salary & Location */}
+              <View style={styles.footer}>
+                <View style={styles.footerInfo}>
+                  <Text style={TYPOGRAPHY.title}>$150 - $220K</Text>
+                  <Text style={styles.locationText}>Mountain View, CA</Text>
+                </View>
+
+                <GlassComp
+                  style={styles.applyButton}
+                  borderWidth={0.5}
+                  intensity={10}
+                  gradientColors={COLORS.darkGlass}
+                >
+                  <Text style={styles.applyText}>Apply Now</Text>
+                </GlassComp>
+              </View>
+            </View>
           </GlassComp>
         </Animated.View>
       </ImageBackground>
@@ -123,37 +107,142 @@ const MovableCard = () => {
   )
 }
 
+/**
+ * Sub-component for Job Tags/Badges
+ */
+const Badge = ({ label }: { label: string }) => (
+  <GlassComp
+    style={styles.badge}
+    borderWidth={0.5}
+    intensity={25}
+    gradientColors={COLORS.darkGlass}
+  >
+    <Text style={styles.badgeText}>{label}</Text>
+  </GlassComp>
+);
+
+/**
+ * Sub-component for Action buttons (e.g., Saved)
+ */
+const ActionButton = ({ label, icon }: { label: string, icon: string }) => (
+  <GlassComp
+    style={styles.actionButton}
+    borderWidth={0.5}
+    intensity={25}
+    gradientColors={COLORS.darkGlass}
+  >
+    <Text style={styles.actionButtonText}>{label}</Text>
+    <FontAwesome name={icon as any} size={20} color={COLORS.text} />
+  </GlassComp>
+);
+
 export default MovableCard
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   cardContainer: {
     height: 450,
-    width: 300,
-    borderRadius: 30,
+    width: 320,
+    borderRadius: BORDER_RADIUS.xl,
   },
   cardContent: {
-    height: 447,
-    width: 297,
-    padding: 12,
+    flex: 1,
+    padding: SPACING.md,
     justifyContent: "space-between",
   },
-  savedButton: {
-    height: 35,
-    width: 90,
-    flexDirection: "row", 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    columnGap: 8, 
-    paddingVertical: 4, 
-    paddingHorizontal: 8, 
-    borderRadius: 10
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  bottomContent: {
-    height: 100,
-    width: "100%",
-    borderTopWidth: 1, 
-    borderColor: "#96ae8cff",
-    marginTop: 30,
-    paddingVertical: 20,
+  logoContainer: {
+    height: 55,
+    width: 55,
+    borderRadius: 27.5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  logo: {
+    height: 30,
+    width: 30,
+  },
+  body: {
+    marginTop: SPACING.xl,
+    flex: 1,
+    position: "relative"
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  titleRow: {
+    flexDirection: "row",
+    marginTop: SPACING.sm
+  },
+  companyName: {
+    ...TYPOGRAPHY.title,
+    color: COLORS.text
+  },
+  postDate: {
+    ...TYPOGRAPHY.body,
+    color: COLORS.textSecondary
+  },
+  badge: {
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: SPACING.md,
+    borderRadius: BORDER_RADIUS.md
+  },
+  badgeText: {
+    ...TYPOGRAPHY.body,
+    fontSize: 14,
+    fontWeight: "600"
+  },
+  actionButton: {
+    height: 35,
+    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    columnGap: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+    borderRadius: BORDER_RADIUS.md
+  },
+  actionButtonText: {
+    ...TYPOGRAPHY.body,
+    fontSize: 14,
+    fontWeight: "600"
+  },
+  footer: {
+    position: "relative",
+    borderTopWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+    paddingVertical: SPACING.lg,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  footerInfo: {
+    flex: 1
+  },
+  locationText: {
+    ...TYPOGRAPHY.caption,
+    fontSize: 14,
+    marginTop: SPACING.xs
+  },
+  applyButton: {
+    height: 45,
+    width: 110,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: BORDER_RADIUS.md
+  },
+  applyText: {
+    ...TYPOGRAPHY.body,
+    fontWeight: "600"
   }
 })

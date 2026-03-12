@@ -7,12 +7,9 @@ import { RootStackParamList } from '../Navigations/StackNavigation';
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
 const animations = [
-  { name: 'Example1', title: 'Example 1' },
   { name: 'SwipeCards', title: 'Swipe Cards' },
   { name: 'MovableCard', title: 'Movable Card' },
   { name: 'WeatherForecastCard', title: 'Weather Forecast Card' },
-  { name: 'GlassyBottomSheet', title: 'Glassy Bottom Sheet' },
-  { name: 'MotivationCard', title: 'Motivation Card' },
   { name: 'GameLoader', title: 'Game Loader' },
   { name: 'CircularControl', title: 'Circular Control' },
   { name: 'StackableCards', title: 'Stackable Cards' },

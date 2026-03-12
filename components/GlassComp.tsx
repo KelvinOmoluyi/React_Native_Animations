@@ -33,73 +33,57 @@ const GlassComp = ({
     const columnGap = flattenedStyle.columnGap || 0;
 
   return (
-      <View style={[style, styles.container]}>
-        {/* Layer 1: The Gradient Border (Masked) */}
-        <MaskedView
+    <View style={[styles.container, style, { borderRadius }]}>
+      {/* Layer 1: The Glass Blur Background */}
+      <View style={[StyleSheet.absoluteFill, { borderRadius, overflow: 'hidden' }]}>
+        <BlurView
+          experimentalBlurMethod="dimezisBlurView"
+          intensity={intensity}
           style={StyleSheet.absoluteFill}
-          maskElement={
-            <View style={styles.maskContainer}>
-              <View style={[
-                  styles.maskBorder, 
-                  { 
-                      borderRadius: borderRadius, 
-                      borderWidth: borderWidth,
-                  }
-                ]} 
-               /> 
-            </View>
-          }
-        >
-          <LinearGradient 
-            colors={gradientColors}
-            start={{x: 0, y: 0}}
-            end={{x: 0.1, y: 1}}
-            style={{flex: 1}} 
-          />
-        </MaskedView>
-
-        {/* Layer 2: The Glass Effect (Background Only) */}
-        <View style={[
-            styles.innerContentContainer,
-            {
-                top: borderWidth,
-                left: borderWidth,
-                right: borderWidth,
-                bottom: borderWidth,
-                borderRadius: borderRadius - (borderWidth / 2),
-                width: width ? (typeof width === 'number' ? width - (borderWidth * 2) : undefined) : undefined,
-                height: height ? (typeof height === 'number' ? height - (borderWidth * 2) : undefined) : undefined,
-            }
-        ]}>
-            <BlurView 
-              experimentalBlurMethod="dimezisBlurView" 
-              intensity={intensity} 
-              style={styles.blurView} 
-            />
-        </View>
-
-        {/* Layer 3: The Content (Siblings on top, no blur) */}
-        <View style={[
-            styles.innerContentContainer,
-            {
-              top: borderWidth,
-              left: borderWidth,
-              right: borderWidth,
-              bottom: borderWidth,
-              borderRadius: borderRadius - (borderWidth / 2),
-              width: width ? (typeof width === 'number' ? width - (borderWidth * 2) : undefined) : undefined,
-              height: height ? (typeof height === 'number' ? height - (borderWidth * 2) : undefined) : undefined,
-              justifyContent, 
-              alignItems, 
-              flexDirection, 
-              padding, 
-              rowGap, 
-              columnGap 
-            }
-        ]}>
-             {children}
-        </View>
+        />
       </View>
+
+      {/* Layer 2: The Gradient Border */}
+      <MaskedView
+        style={StyleSheet.absoluteFill}
+        maskElement={
+          <View style={[styles.maskContainer, { borderRadius }]}>
+            <View
+              style={[
+                styles.maskBorder,
+                {
+                  borderRadius: borderRadius,
+                  borderWidth: borderWidth,
+                }
+              ]}
+            />
+          </View>
+        }
+      >
+        <LinearGradient
+          colors={gradientColors}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0.1, y: 1 }}
+          style={{ flex: 1 }}
+        />
+      </MaskedView>
+
+      {/* Layer 3: The Content */}
+      <View
+        style={{
+          padding: (padding as number) + borderWidth,
+          height: "100%",
+          justifyContent,
+          alignItems,
+          flexDirection,
+          rowGap,
+          columnGap,
+          position: "relative",
+        }}
+      >
+        {children}
+      </View>
+    </View>
   )
 }
 

@@ -11,6 +11,7 @@ import Animated, {
   interpolate,
   Easing,
 } from "react-native-reanimated";
+import { COLORS, SPACING, BORDER_RADIUS, ANIMATION_CONFIGS } from "@/const/theme";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -32,14 +33,15 @@ const CARD_COLORS = [
 const STACK_OFFSET_Y = 8;
 const STACK_OFFSET_X = 6;
 
-// ── Spring config ────────────────────────────────────────
-const SPRING_CONFIG = {
-  damping: 18,
-  stiffness: 200,
-  mass: 0.8,
-};
-
-// ── Component ────────────────────────────────────────────
+/**
+ * StackableCards Component
+ * Demonstrates a card stack with infinite cycling and fling-to-dismiss gestures.
+ * 
+ * Key Techniques:
+ * - Reanimated shared values for smooth UI gestures.
+ * - Interpolation for background card scaling and rotation.
+ * - Gesture Handler Pan for touch interaction.
+ */
 const StackableCards = () => {
   const [cardOrder, setCardOrder] = useState(
     CARD_COLORS.map((_, i) => i) // [0, 1, 2, 3, 4, 5]
@@ -49,7 +51,9 @@ const StackableCards = () => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
 
-  // Called from the UI thread once the fling/snap finishes
+  /**
+   * Cycles the card stack: moves the top card to the bottom.
+   */
   const cycleCards = () => {
     setCardOrder((prev) => {
       const next = [...prev];
@@ -85,8 +89,8 @@ const StackableCards = () => {
         translateY.value = withTiming(0, { duration: 300 });
       } else {
         // Snap back to origin
-        translateX.value = withSpring(0, SPRING_CONFIG);
-        translateY.value = withSpring(0, SPRING_CONFIG);
+        translateX.value = withSpring(0, ANIMATION_CONFIGS.spring);
+        translateY.value = withSpring(0, ANIMATION_CONFIGS.spring);
       }
     });
 
@@ -199,7 +203,7 @@ export default StackableCards;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1A1A2E",
+    backgroundColor: COLORS.background,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -213,7 +217,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
-    borderRadius: 20,
+    borderRadius: BORDER_RADIUS.lg,
     justifyContent: "center",
     alignItems: "center",
     // Subtle shadow
