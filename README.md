@@ -27,18 +27,44 @@ To ensure consistency and ease of maintenance, the project uses a centralized th
 
 ---
 
-## 📽️ Animation Showcase
+## 📽️ Animation Gallery
 
-Explore the different animation examples located in the [`App/animations`](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations) directory:
+Explore the collection of custom animations. Each example is designed to showcase specific React Native techniques.
 
-| Animation | Description | Key Techniques |
-| :--- | :--- | :--- |
-| 🃏 [**MovableCard**](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/MovableCard.tsx) | A glassmorphic job card that can be dragged and snaps back to origin. | PanResponder, Animated.spring, Glassmorphism. |
-| 📚 [**StackableCards**](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/StackableCards.tsx) | An infinite stack of cards with fling-to-dismiss gestures and rotation interpolation. | useSharedValue, useAnimatedStyle, withTiming, Interpolation. |
-| ☁️ [**WeatherForecast**](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/WeatherForecastCard.tsx) | A detailed, multi-layered weather card with glassmorphic pills and icons. | Modular Styling, Composite Layouts, Image Assets. |
-| 🔘 [**CircularControl**](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/CircularControl.tsx) | A rotatable knob/control with haptic-like feel. | Gestures, Math (Atan2), Rotation logic. |
-| 📄 [**GlassyBottomSheet**](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/GlassyBottomSheet.tsx) | A smooth, translucent bottom sheet for modern UI. | @gorhom/bottom-sheet integration. |
-| 🎮 [**GameLoader**](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/GameLoader.tsx) | A dynamic loading screen for gaming apps. | Moti animations, Sequencing. |
+### 🃏 [Movable Card](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/MovableCard.tsx)
+A high-end glassmorphic job card featuring interactive dragging. 
+- **What it does**: Users can drag the card anywhere on the screen. Upon release, it uses a spring animation to "snap" back to its original position.
+- **Key Techniques**: `PanResponder` for complex gesture tracking, `Animated.spring` for the physics-based return.
+
+### 📚 [Stackable Cards](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/StackableCards.tsx)
+An elegant infinite card stack with fluid transitions.
+- **What it does**: Swipe the top card left to dismiss it. The card snaps off-screen, and the stack automatically cycles the next card to the top, allowing for endless swiping.
+- **Key Techniques**: `useSharedValue`, `useAnimatedStyle`, `interpolation` for background card scaling, and `Gesture Handler Pan`.
+
+### ☁️ [Weather Forecast](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/WeatherForecastCard.tsx)
+A detailed, data-driven weather UI with a premium glassmorphic feel.
+- **What it does**: Displays current weather, sun cycles, and a weekly forecast using a sophisticated multi-layered glass layout.
+- **Key Techniques**: Modular component architecture, composite styling with `BlurView`, and image asset optimization.
+
+### 🔘 [Circular Control](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/CircularControl.tsx)
+A rotatable knob/dial for precise value selection.
+- **What it does**: A realistic 360° rotatable knob with haptic-like tick marks. The UI updates dynamically based on the rotation angle.
+- **Key Techniques**: Math-heavy logic (`atan2`), `react-native-svg` for dynamic tick marks, and `useDerivedValue` for real-time data updates.
+
+### 🃏 [Swipe Cards](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/SwipeCards.tsx)
+A classic deck-style swiping interaction (Tinder-style).
+- **What it does**: Allows users to swipe through a deck of cards with smooth overlay feedback.
+- **Key Techniques**: `reanimated-2` gesture logic and high-performance list rendering.
+
+### 🎮 [Game Loader](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/GameLoader.tsx)
+A dynamic, engaging loading sequence for gaming interfaces.
+- **What it does**: Uses declarative animations to create a polished, "living" loader that feels responsive.
+- **Key Techniques**: `Moti` for simple, powerful entry/exit animations and sequenced transitions.
+
+### 📍 [Tourist Card](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/TouristCard.tsx)
+A travel-themed UI component with smooth layout transitions.
+- **What it does**: Showcases destination details with high-quality imagery and integrated animation states.
+- **Key Techniques**: Custom layout animations and shared element-like transitions.
 
 ---
 
