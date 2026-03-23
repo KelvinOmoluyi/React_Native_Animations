@@ -8,6 +8,7 @@ import GameLoader from '@/App/animations/GameLoader';
 import CircularControl from '@/App/animations/CircularControl';
 import StackableCards from '@/App/animations/StackableCards';
 import TouristCard from '@/App/animations/TouristCard';
+import CircularControlTwo from '@/App/animations/CircularControlTwo';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -19,6 +20,7 @@ export type RootStackParamList = {
   MotivationCard: undefined;
   GameLoader: undefined;
   CircularControl: undefined;
+  CircularControlTwo: undefined;
   StackableCards: undefined;
   TouristCard: undefined;
 };
@@ -34,6 +36,7 @@ const StackNavigation = () => {
       <Stack.Screen name="WeatherForecastCard" component={WeatherForecastCard} />
       <Stack.Screen name="GameLoader" component={GameLoader} />
       <Stack.Screen name="CircularControl" component={CircularControl} />
+      <Stack.Screen name="CircularControlTwo" component={CircularControlTwo} />
       <Stack.Screen name="StackableCards" component={StackableCards} />
       <Stack.Screen name="TouristCard" component={TouristCard} />
     </Stack.Navigator>

@@ -12,6 +12,7 @@ const animations = [
   { name: 'WeatherForecastCard', title: 'Weather Forecast Card' },
   { name: 'GameLoader', title: 'Game Loader' },
   { name: 'CircularControl', title: 'Circular Control' },
+  { name: 'CircularControlTwo', title: 'Circular Control Two' },
   { name: 'StackableCards', title: 'Stackable Cards' },
   { name: 'TouristCard', title: 'Tourist Card' },
 ];

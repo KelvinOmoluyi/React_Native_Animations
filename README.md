@@ -60,6 +60,13 @@ A rotatable knob/dial for precise value selection.
 - **What it does**: A realistic 360° rotatable knob with haptic-like tick marks. The UI updates dynamically based on the rotation angle.
 - **Key Techniques**: Math-heavy logic (`atan2`), `react-native-svg` for dynamic tick marks, and `useDerivedValue` for real-time data updates.
 
+### 🔘 [Circular Control Two](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/CircularControlTwo.tsx)
+
+An advanced rotatable knob with an interactive mapped dot layout.
+
+- **What it does**: A 270° interactive knob starting from the bottom-left and ending at the bottom-right. Features an array of dots that dynamically light up (turn yellow) as the knob rotates past them.
+- **Key Techniques**: Advanced math logic (`atan2` mapping with a dead zone), `react-native-svg` layers for active/inactive states, and `useDerivedValue` combined with `useAnimatedProps` for high-performance rendering.
+
 ### 🃏 [Swipe Cards](file:///c:/Users/USER/Documents/React%20native%20projects/Animation_playground/App/animations/SwipeCards.tsx)
 
 A classic deck-style swiping interaction (Tinder-style).

@@ -11,6 +11,8 @@ import neonBackground from '@/assets/images/neon-background.png'
 import bubbleBackground from '@/assets/images/bubble-background.jpg'
 import desertBackground from '@/assets/images/desert-background.jpg'
 import circularKnob from '@/assets/images/circular-knob.png';
+import darkKnob from '@/assets/images/dark-knob.png';
+import darkKnobPointer from '@/assets/images/dark-knob-pointer.png';
 
 export const Images = {
     LeafBackground1,
@@ -26,4 +28,6 @@ export const Images = {
     bubbleBackground,
     desertBackground,
     circularKnob,
+    darkKnob,
+    darkKnobPointer,
 }
